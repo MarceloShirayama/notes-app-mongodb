@@ -1,2 +1,4 @@
 node_modules
 links.txt
+.dbcache
+.env

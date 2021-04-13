@@ -1,0 +1,17 @@
+docker exec -it mongo-api-notes /bin/bash
+
+mongo -u root -p root
+
+show databases;
+
+use notes-app;
+
+db.createUser(
+  {
+    user: "notes_app_user",
+    pwd: "notes_app_user",
+    roles: ["readWrite"]
+  }
+)
+
+show users;

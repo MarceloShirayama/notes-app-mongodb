@@ -1,0 +1,45 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongo-api-notes
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./.dbcache/mongo/data:/data/db
+    ports:
+      - "27017:27017"
+    networks: 
+      - backend
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express-api-notes
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+    networks: 
+      - backend
+  
+  api:
+    image: node:slim
+    container_name: api-notes
+    ports: 
+      - "3000:3000"
+    working_dir: "/home/node/app"
+    volumes: 
+      - ./:/home/node/app
+    command: "npm run dev"
+    networks: 
+      - backend
+
+networks: 
+  backend:
+    driver: "bridge"
