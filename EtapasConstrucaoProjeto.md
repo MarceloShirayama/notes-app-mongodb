@@ -52,3 +52,7 @@
     - [ ] Configuração de uma rota simples inicial.
 
     - [ ] Configuração do path dos arquivos estáticos para o diretório public.
+
+- [ ] Criar e configurar o banco de dados mongodb
+
+-[ ] Criar os models Note e User
