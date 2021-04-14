@@ -23,3 +23,14 @@ log do docker da api-notes
 docker log -f api-notes
 ```
 
+---
+
+show databases;
+
+use notes-app;
+
+show collections;
+
+db.notes.find();
+
+db.notes.find().pretty();
