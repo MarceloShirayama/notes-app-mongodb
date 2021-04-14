@@ -15,3 +15,11 @@ db.createUser(
 )
 
 show users;
+
+---
+
+log do docker da api-notes
+```bash
+docker log -f api-notes
+```
+
