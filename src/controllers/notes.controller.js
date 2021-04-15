@@ -10,7 +10,7 @@ notesCtrl.createNewNote = async (req, res) => {
   const { title, description } = req.body;
   const newNote = new Note({ title, description });
   await newNote.save();
-  req.flash('success_msg', 'Nota adicionada com sucesso');
+  req.flash('success_msg', `Nota ${newNote.title} adicionada com sucesso`);
   res.redirect('/notes');
 };
 
@@ -29,7 +29,7 @@ notesCtrl.updateNote = async (req, res) => {
   await Note.findByIdAndUpdate(
     req.params.id, { title, description },
   );
-  req.flash('success_msg', 'Nota atualizada com sucesso');
+  req.flash('success_msg', `Nota da ${title} atualizada com sucesso`);
   res.redirect('/notes');
 };
 
