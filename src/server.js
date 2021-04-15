@@ -2,6 +2,9 @@ const path = require('path');
 const express = require('express');
 // const morgan = require('morgan');
 const handlebars = require('express-handlebars');
+const methodOverride = require('method-override');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 // Initializations
 const app = express();
@@ -20,8 +23,19 @@ app.set('view engine', '.hbs');
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
 // app.use(morgan('dev'));
+app.use(methodOverride('_method'));
+app.use(session({
+  secret: process.env.SESSION_SECRET_KEY,
+  resave: true,
+  saveUninitialized: true,
+}));
+app.use(flash());
 
 // Global variables
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  next();
+});
 
 // Routes
 app.use(require('./routes/index.routes'));

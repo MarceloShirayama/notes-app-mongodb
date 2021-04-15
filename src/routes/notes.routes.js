@@ -18,7 +18,7 @@ router.get('/notes', renderNotes);
 // Edit notes
 router.get('/notes/edit/:id', renderEditForm);
 
-router.post('/notes/edit/:id', updateNote);
+router.put('/notes/edit/:id', updateNote);
 
 // Delete notes
 router.delete('/notes/delete/:id', deleteNote);

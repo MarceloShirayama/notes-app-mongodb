@@ -1,3 +1,7 @@
 body {
   background: rgb(120, 165, 233);
 }
+
+.alert-sucess {
+  background:rgb(120, 233, 190)
+}
