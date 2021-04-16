@@ -1,3 +1,4 @@
+const passport = require('passport');
 const User = require('../models/User');
 
 const usersCtrl = {};
@@ -46,12 +47,16 @@ usersCtrl.renderSignInForm = (req, res) => {
   res.render('users/signin');
 };
 
-usersCtrl.signIn = (req, res) => {
-  res.send('signin');
-};
+usersCtrl.signIn = passport.authenticate('local', {
+  failureRedirect: '/users/signin',
+  successRedirect: '/notes',
+  failureFlash: true,
+});
 
 usersCtrl.logOut = (req, res) => {
-  res.send('logout');
+  req.logout();
+  req.flash('success_msg', 'Sessão encerrada');
+  res.redirect('/users/signin');
 };
 
 module.exports = usersCtrl;
